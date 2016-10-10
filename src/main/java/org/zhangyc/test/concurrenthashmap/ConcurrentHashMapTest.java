@@ -1,0 +1,1 @@
+package org.zhangyc.test.concurrenthashmap;import java.util.concurrent.ConcurrentHashMap;import java.util.concurrent.ConcurrentMap;/** * Created by user on 16/7/26. */public class ConcurrentHashMapTest {    public static void main(String[] args){        ConcurrentMap concurrentMap = new ConcurrentHashMap();    }}

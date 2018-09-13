@@ -18,10 +18,10 @@ public class Test {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String str = sdf.format(new Date());
         System.out.println(str.substring(0,10));
-//        ExecutorService executorService = Executors.newFixedThreadPool(2);
-//        for(int i = 1; i < 10; i++){
-//            executorService.execute(new RunTest(i));
-//        }
-//        executorService.shutdownNow();
+        ExecutorService executorService = Executors.newFixedThreadPool(2);
+        for(int i = 1; i < 10; i++){
+            executorService.execute(new RunTest(i));
+        }
+        executorService.shutdownNow();
     }
 }

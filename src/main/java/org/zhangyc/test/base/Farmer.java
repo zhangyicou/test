@@ -34,6 +34,9 @@ public class Farmer extends Person {
     @Override
     public String toString() {
         return "Farmer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
                 "quantityOfLand=" + quantityOfLand +
                 ", plantingTypes=" + plantingTypes +
                 '}';

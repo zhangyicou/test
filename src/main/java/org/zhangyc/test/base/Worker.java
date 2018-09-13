@@ -44,6 +44,9 @@ public class Worker extends Person {
     @Override
     public String toString() {
         return "Worker{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
                 "jobType=" + jobType +
                 ", company='" + company + '\'' +
                 ", pay=" + pay +

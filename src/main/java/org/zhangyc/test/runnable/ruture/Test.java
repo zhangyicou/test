@@ -8,6 +8,8 @@ import java.util.concurrent.Future;
  */
 public class Test {
     public static void main(String[] args){
+        Executors.newSingleThreadExecutor().execute(new TestRunnable());
+        System.out.println("----------------------------------------------");
         Future future = Executors.newSingleThreadExecutor().submit(new TestRunnable());
         try {
             future.get();

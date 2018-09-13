@@ -4,9 +4,9 @@ package org.zhangyc.test.base;
  * Created by user on 16/7/18.
  */
 public class Person {
-    private Long id;
-    private String name;
-    private Integer age;
+    protected Long id;
+    protected String name;
+    protected Integer age;
 
     public Person(Long id, String name, Integer age) {
         this.id = id;

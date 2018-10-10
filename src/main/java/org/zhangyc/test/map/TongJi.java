@@ -1,6 +1,8 @@
 package org.zhangyc.test.map;
 
+import java.util.Hashtable;
 import java.util.TreeMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by zhang on 2018/9/13.
@@ -41,6 +43,9 @@ public class TongJi {
             System.out.println(key+":"+map.get(key).getDesctription());
         }
     }
+
+    ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
+
 
     public String getDate() {
         return date;

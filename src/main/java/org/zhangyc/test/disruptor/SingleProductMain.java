@@ -3,6 +3,7 @@ package org.zhangyc.test.disruptor;
 import com.lmax.disruptor.BlockingWaitStrategy;
 import com.lmax.disruptor.EventFactory;
 import com.lmax.disruptor.RingBuffer;
+import com.lmax.disruptor.WorkProcessor;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
 
@@ -13,7 +14,7 @@ import java.util.concurrent.Executors;
  */
 public class SingleProductMain {
     public static void main(String[] args) {
-        int bufferSize = 1024*1024;//环形队列长度，必须是2的N次方
+        int bufferSize = 4;//环形队列长度，必须是2的N次方
         EventFactory<LongEvent> eventFactory = new LongEventFactory();
 
         /**
@@ -30,13 +31,14 @@ public class SingleProductMain {
 //        disruptor.handleEventsWith(new C11EventHandler()).then(new C12EventHandler()).then(new C21EventHandler()).then(new C22EventHandler());
 //        System.out.println("----------------------------------------------------------");
 
-        System.out.println("------菱形方式执行------------------------------------------");
-        //菱形方式执行
-        disruptor.handleEventsWith(new C11EventHandler(),new C12EventHandler()).then(new C21EventHandler());
-        System.out.println("----------------------------------------------------------");
+//        System.out.println("------菱形方式执行------------------------------------------");
+//        //菱形方式执行
+//        disruptor.handleEventsWith(new C11EventHandler(),new C12EventHandler()).then(new C21EventHandler());
+//        System.out.println("----------------------------------------------------------");
 
 //        System.out.println("------链式并行计算------------------------------------------");
-//        disruptor.handleEventsWith(new C11EventHandler()).then(new C12EventHandler());
+        disruptor.handleEventsWith(new C11EventHandler()).then(new C12EventHandler());
+        disruptor.handleEventsWith(new C21EventHandler()).then(new C22EventHandler());
 //        disruptor.handleEventsWith(new C21EventHandler()).then(new C22EventHandler());
 //        System.out.println("----------------------------------------------------------");
 
@@ -45,15 +47,26 @@ public class SingleProductMain {
 //        disruptor.handleEventsWithWorkerPool(new C21EventHandler(),new C21EventHandler());
 //        System.out.println("----------------------------------------------------------");
 
+//        System.out.println("------串行依次执行------------------------------------------");
+//        //串行依次执行
+//        disruptor.handleEventsWithWorkerPool(new C11EventHandler(),new C11EventHandler(),new C21EventHandler(),new C21EventHandler())
+//                .thenHandleEventsWithWorkerPool(new C12EventHandler());
+//        System.out.println("----------------------------------------------------------");
+
         disruptor.start();
 
         /////////////////////////////////////////////////////////////////////
         RingBuffer<LongEvent> ringBuffer = disruptor.getRingBuffer();
-        /**
-         * 输入10
-         */
-        ringBuffer.publishEvent(new LongEventTranslator(),10L);
-        //ringBuffer.publishEvent(new LongEventTranslator(),100L);
+
+        for(int i = 0; i <= 0; i++) {
+            /**
+             * 输入10
+             */
+            ringBuffer.publishEvent(new LongEventTranslator(), 10L);
+            //ringBuffer.publishEvent(new LongEventTranslator(),100L);
+        }
+
+        disruptor.shutdown();
     }
 
 }

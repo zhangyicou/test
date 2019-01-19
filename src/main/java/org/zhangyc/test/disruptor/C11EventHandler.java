@@ -8,17 +8,17 @@ import com.lmax.disruptor.WorkHandler;
  */
 
 public class C11EventHandler implements EventHandler<LongEvent>, WorkHandler<LongEvent> {
+    ThreadLocal<Long> threadLocal = new ThreadLocal<Long>();
     @Override
     public void onEvent(LongEvent longEvent, long sequence, boolean endOfBatch) throws Exception {
-        long number = longEvent.getValue();
-        number += 10;
-        System.out.println(System.currentTimeMillis()+": c1-1-1 consumer finished.number=" + number);
+        threadLocal.set(longEvent.getValue());
+        threadLocal.set(threadLocal.get() + 10);
+        System.out.println(System.currentTimeMillis()+": c1-1-1 consumer finished.number=" + threadLocal.get() + "; sequence="+sequence);
+        //longEvent.setValue(threadLocal.get());
     }
 
     @Override
     public void onEvent(LongEvent longEvent) throws Exception {
-        long number = longEvent.getValue();
-        number += 10;
-        System.out.println(System.currentTimeMillis()+": c1-1-2 consumer finished.number=" + number);
+        longEvent.setValue(longEvent.getValue() + 10);
     }
 }

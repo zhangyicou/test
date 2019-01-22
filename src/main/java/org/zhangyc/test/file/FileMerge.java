@@ -1,11 +1,7 @@
 package org.zhangyc.test.file;
 
 import com.alibaba.fastjson.JSON;
-import com.sun.deploy.util.StringUtils;
-import org.zhangyc.test.excel.EncryptUtils;
 import org.zhangyc.test.excel.jdgift.JDGiftExeclManagerImpl;
-import org.zhangyc.test.excel.jdgift.JDGiftInfo;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;

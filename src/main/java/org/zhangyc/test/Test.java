@@ -65,5 +65,7 @@ public class Test {
         Float price1 = 1840.64f;
         Float price2 = 1840.647f;
         System.out.println(Math.abs(price1.floatValue() - price2.floatValue()) < 1);
+
+        System.out.println(Long.valueOf(""));
     }
 }

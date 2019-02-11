@@ -1,8 +1,11 @@
 package org.zhangyc.test;
 
+import com.google.common.primitives.Ints;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -65,7 +68,5 @@ public class Test {
         Float price1 = 1840.64f;
         Float price2 = 1840.647f;
         System.out.println(Math.abs(price1.floatValue() - price2.floatValue()) < 1);
-
-        System.out.println(Long.valueOf(""));
     }
 }

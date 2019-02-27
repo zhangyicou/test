@@ -21,17 +21,20 @@ public class LoadingCacheRefreshTest {
                     @Override
                     public String load(String key) throws Exception {
                         System.out.println("Load Value " + count.get() + " time(s)");
-                        for (int i = 0; i < 10; i++) {
-                            System.out.println("Load Value for " + i + " second(s)");
-                            Thread.currentThread().sleep(1000);
+
+                        try{
+                            TimeUnit.SECONDS.sleep(1);
+                        }catch (Exception e){
+                            e.printStackTrace();
                         }
+
                         count.incrementAndGet();
                         return "China";
                     }
 
                     @Override
                     public String reload(String key, String oldValue) throws Exception {
-                        System.out.println("Reload for " + reloadCount.get() + " time(s)");
+                        System.out.println("..........................Reload for " + reloadCount.get() + " time(s)");
                         ;
 //                        ListenableFutureTask<String> futureTask = ListenableFutureTask.create(() -> {
 //                            for (int i = 0; i < 10; i++) {
@@ -43,10 +46,15 @@ public class LoadingCacheRefreshTest {
 //                        });
 //                        executorService.execute(futureTask);
 
+                        try{
+                            TimeUnit.SECONDS.sleep(1);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
 
                         Random random = new Random();
                         String value = String.valueOf(random.nextInt());
-                        System.out.println("value="+value);
+                        System.out.println("..........................value="+value);
                         return value;
                     }
                 });
@@ -55,7 +63,7 @@ public class LoadingCacheRefreshTest {
     public static void main(String[] args) {
         LoadingCacheRefreshTest test = new LoadingCacheRefreshTest();
         Runnable runnable1 = () -> {
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 1000000; i++) {
                 try {
                     System.out.println("Runnable1 Before Get Cache");
                     System.out.println("Runnable1 " + test.loadingCache.get("Country"));
@@ -67,7 +75,7 @@ public class LoadingCacheRefreshTest {
             }
         };
         Runnable runnable2 = () -> {
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 1000000; i++) {
                 try {
                     System.out.println("Runnable2 Before Get Cache");
                     System.out.println("Runnable2 " + test.loadingCache.get("Country"));
@@ -78,9 +86,54 @@ public class LoadingCacheRefreshTest {
                 }
             }
         };
+
+        Runnable runnable3 = () -> {
+            for (int i = 0; i < 1000000; i++) {
+                try {
+                    System.out.println("Runnable3 Before Get Cache");
+                    System.out.println("Runnable3 " + test.loadingCache.get("Country"));
+                    System.out.println("Runnable3 After Get Cache");
+                    Thread.currentThread().sleep(1000);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        Runnable runnable4 = () -> {
+            for (int i = 0; i < 1000000; i++) {
+                try {
+                    System.out.println("Runnable4 Before Get Cache");
+                    System.out.println("Runnable4 " + test.loadingCache.get("Country"));
+                    System.out.println("Runnable4 After Get Cache");
+                    Thread.currentThread().sleep(1000);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        Runnable runnable5 = () -> {
+            for (int i = 0; i < 1000000; i++) {
+                try {
+                    System.out.println("Runnable5 Before Get Cache");
+                    System.out.println("Runnable5 " + test.loadingCache.get("Country"));
+                    System.out.println("Runnable5 After Get Cache");
+                    Thread.currentThread().sleep(1000);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
         Thread thread1 = new Thread(runnable1);
         Thread thread2 = new Thread(runnable2);
+        Thread thread3 = new Thread(runnable3);
+        Thread thread4 = new Thread(runnable4);
+        Thread thread5 = new Thread(runnable5);
         thread1.start();
         thread2.start();
+        thread3.start();
+        thread4.start();
+        thread5.start();
     }
 }

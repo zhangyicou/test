@@ -23,7 +23,7 @@ public class SingleProductMain {
         Disruptor<LongEvent> disruptor = new Disruptor<LongEvent>(eventFactory,bufferSize, Executors.defaultThreadFactory(), ProducerType.SINGLE,new BlockingWaitStrategy());
 //        System.out.println("------并行执行----------------------------------------------");
 //        //并行执行
-//        disruptor.handleEventsWith(new C11EventHandler(), new C12EventHandler(), new C21EventHandler(), new C22EventHandler());
+        disruptor.handleEventsWith(new C11EventHandler(), new C12EventHandler(), new C21EventHandler(), new C22EventHandler());
 //        System.out.println("----------------------------------------------------------");
 
 //        System.out.println("------串行依次执行------------------------------------------");
@@ -35,10 +35,20 @@ public class SingleProductMain {
 //        //菱形方式执行
 //        disruptor.handleEventsWith(new C11EventHandler(),new C12EventHandler()).then(new C21EventHandler());
 //        System.out.println("----------------------------------------------------------");
+//
+//        C11EventHandler handler11 = new C11EventHandler();
+//        C12EventHandler handler12 = new C12EventHandler();
+//        C21EventHandler handler21 = new C21EventHandler();
+//        C22EventHandler handler22 = new C22EventHandler();
+//        disruptor.handleEventsWith(handler11, handler21);
+//        disruptor.after(handler11).handleEventsWith(handler12);
+//        disruptor.after(handler21).handleEventsWith(handler22);
+//        disruptor.after(handler12, handler22).handleEventsWith(handler11);
+
 
 //        System.out.println("------链式并行计算------------------------------------------");
-        disruptor.handleEventsWith(new C11EventHandler()).then(new C12EventHandler());
-        disruptor.handleEventsWith(new C21EventHandler()).then(new C22EventHandler());
+//        disruptor.handleEventsWith(new C11EventHandler()).then(new C12EventHandler());
+//        disruptor.handleEventsWith(new C21EventHandler()).then(new C22EventHandler());
 //        disruptor.handleEventsWith(new C21EventHandler()).then(new C22EventHandler());
 //        System.out.println("----------------------------------------------------------");
 

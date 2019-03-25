@@ -9,6 +9,7 @@ import com.lmax.disruptor.WorkHandler;
 
 public class C11EventHandler implements EventHandler<LongEvent>, WorkHandler<LongEvent> {
     ThreadLocal<Long> threadLocal = new ThreadLocal<Long>();
+
     @Override
     public void onEvent(LongEvent longEvent, long sequence, boolean endOfBatch) throws Exception {
         threadLocal.set(longEvent.getValue());

@@ -68,11 +68,14 @@ public class SingleProductMain {
         /////////////////////////////////////////////////////////////////////
         RingBuffer<LongEvent> ringBuffer = disruptor.getRingBuffer();
 
+        Long[] ary = {100L, 110L};
+
         for(int i = 0; i <= 0; i++) {
             /**
              * 输入10
              */
             ringBuffer.publishEvent(new LongEventTranslator(), 10L);
+            ringBuffer.publishEvents(new LongEventTranslator(), ary);
             //ringBuffer.publishEvent(new LongEventTranslator(),100L);
         }
 

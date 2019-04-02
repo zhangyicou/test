@@ -21,9 +21,11 @@ public class SingleProductMain {
          * 定义Disruptor，基于单生产者，阻塞策略
          */
         Disruptor<LongEvent> disruptor = new Disruptor<LongEvent>(eventFactory,bufferSize, Executors.defaultThreadFactory(), ProducerType.SINGLE,new BlockingWaitStrategy());
+        disruptor.setDefaultExceptionHandler(new MyExceptionHandler());
+        //
 //        System.out.println("------并行执行----------------------------------------------");
 //        //并行执行
-        disruptor.handleEventsWith(new C11EventHandler(), new C12EventHandler(), new C21EventHandler(), new C22EventHandler());
+        disruptor.handleEventsWith(new C11EventHandler()).then(new C12EventHandler(), new C21EventHandler(), new C22EventHandler());
 //        System.out.println("----------------------------------------------------------");
 
 //        System.out.println("------串行依次执行------------------------------------------");
@@ -70,12 +72,12 @@ public class SingleProductMain {
 
         Long[] ary = {100L, 110L};
 
-        for(int i = 0; i <= 0; i++) {
+        for(int i = 0; i <= 3; i++) {
             /**
              * 输入10
              */
-            ringBuffer.publishEvent(new LongEventTranslator(), 10L);
-            ringBuffer.publishEvents(new LongEventTranslator(), ary);
+            ringBuffer.publishEvent(new LongEventTranslator(), i * 10L);
+//            ringBuffer.publishEvents(new LongEventTranslator(), ary);
             //ringBuffer.publishEvent(new LongEventTranslator(),100L);
         }
 

@@ -5,7 +5,7 @@ package org.zhangyc.test.yasuo;
  */
 public class Test {
     public static void main(String[] args){
-        String str = "aaaaaabbbbbbrrrrrrcccccckkkkkkaaaaaaddddddffffffbbbbbbddddddaaaaaa";
+        String str = "aaaaaabbbbbbrrrrrrcccccckkkkkkaaaaaaddddddffffffbbbbbbddddddaaaaaacc";
 
         Node node = null;
         for(char c : str.toCharArray()){

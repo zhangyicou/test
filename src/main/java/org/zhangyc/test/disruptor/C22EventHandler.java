@@ -11,6 +11,7 @@ public class C22EventHandler implements EventHandler<LongEvent>, WorkHandler<Lon
     ThreadLocal<Long> threadLocal = new ThreadLocal<Long>();
     @Override
     public void onEvent(LongEvent longEvent, long sequence, boolean endOfBatch) throws Exception {
+        System.out.println("C22EventHandler.longEvent="+longEvent.getValue());
         threadLocal.set(longEvent.getValue());
         threadLocal.set(threadLocal.get() * 20);
         System.out.println(System.currentTimeMillis()+": c2-2-1 consumer finished.number=" + threadLocal.get() + "; sequence="+sequence);

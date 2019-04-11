@@ -14,10 +14,10 @@ public class C11EventHandler implements EventHandler<LongEvent>, WorkHandler<Lon
     public void onEvent(LongEvent longEvent, long sequence, boolean endOfBatch) throws Exception {
         System.out.println("C11EventHandler.longEvent="+longEvent.getValue());
         threadLocal.set(longEvent.getValue());
-        threadLocal.set(threadLocal.get() + 10);
-        System.out.println(System.currentTimeMillis()+": c1-1-1 consumer finished.number=" + threadLocal.get() + "; sequence="+sequence);
+        //threadLocal.set(threadLocal.get() + 10);
+        System.out.println(System.currentTimeMillis()+": c1-1-1 consumer finished.number=" + threadLocal.get() + "; sequence="+sequence+"; endOfBatch="+endOfBatch);
         //longEvent.setValue(threadLocal.get());
-        throw new Exception("TEST Error");
+        //throw new Exception("TEST Error");
     }
 
     @Override

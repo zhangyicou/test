@@ -13,8 +13,8 @@ public class C12EventHandler implements EventHandler<LongEvent>, WorkHandler<Lon
     public void onEvent(LongEvent longEvent, long sequence, boolean endOfBatch) throws Exception {
         System.out.println("C12EventHandler.longEvent="+longEvent.getValue());
         threadLocal.set(longEvent.getValue());
-        threadLocal.set(threadLocal.get() * 10);
-        System.out.println(System.currentTimeMillis()+": c1-2-1 consumer finished.number=" + threadLocal.get() + "; sequence="+sequence);
+        //threadLocal.set(threadLocal.get() * 10);
+        System.out.println("c1-1-2 consumer finished.number=" + threadLocal.get() + "; sequence="+sequence+"; endOfBatch="+endOfBatch);
         //longEvent.setValue(threadLocal.get());
     }
 

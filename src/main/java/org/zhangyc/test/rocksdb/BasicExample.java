@@ -27,9 +27,6 @@ public class BasicExample {
 
         SkipListMemTableConfig memTableConfig = new SkipListMemTableConfig();
 
-        ColumnFamilyOptions columnFamilyOptions = new ColumnFamilyOptions();
-        System.out.println(columnFamilyOptions.arenaBlockSize());
-
         // a factory method that returns a RocksDB instance
         RocksDB client = RocksDB.open(options, "data/compare");
 

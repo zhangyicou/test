@@ -3,7 +3,6 @@ package org.zhangyc.test.disruptor;
 import com.lmax.disruptor.BlockingWaitStrategy;
 import com.lmax.disruptor.EventFactory;
 import com.lmax.disruptor.RingBuffer;
-import com.lmax.disruptor.WorkProcessor;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
 
@@ -72,13 +71,14 @@ public class SingleProductMain {
 
         Long[] ary = {100L, 110L};
 
-        for(int i = 0; i <= 3; i++) {
+        for(int i = 0; i <= 300; i++) {
             /**
              * 输入10
              */
             ringBuffer.publishEvent(new LongEventTranslator(), i * 10L);
 //            ringBuffer.publishEvents(new LongEventTranslator(), ary);
             //ringBuffer.publishEvent(new LongEventTranslator(),100L);
+            System.out.println("-------------------------------");
         }
 
         disruptor.shutdown();

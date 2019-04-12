@@ -33,6 +33,9 @@ public class TreeSetTest {
         while (iterable.hasNext()){
             DLine dLine = iterable.next();
             System.out.println(dLine.getPrice().intValue() + "; " + dLine.getTotalCount());
+            if(dLine.getPrice().compareTo(BigDecimal.TEN) >= 0){
+                set.remove(dLine);
+            }
         }
 
     }

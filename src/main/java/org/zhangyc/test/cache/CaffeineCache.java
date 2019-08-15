@@ -14,7 +14,7 @@ public class CaffeineCache {
     private Random random = new Random();
     private final AsyncLoadingCache<String, String> cache = Caffeine.newBuilder()
             .maximumSize(10_000_000)
-            .expireAfterWrite(1, TimeUnit.MINUTES)
+            .refreshAfterWrite(1, TimeUnit.SECONDS)
             .buildAsync(this::load);
 
 
@@ -30,6 +30,7 @@ public class CaffeineCache {
     }
 
     public String load(String key){
+        System.out.println("---load-------------");
         return UUID.randomUUID().toString();
     }
 

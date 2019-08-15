@@ -38,6 +38,17 @@ public class BasicExample {
         }
 
         System.out.println(new String(client.get("workman".getBytes())));
+        StringBuilder sb = new StringBuilder();
+        System.out.println("workman-exists="+client.keyMayExist("workman".getBytes(), sb));
+        System.out.println("workman-sb="+sb.length());
+        byte[] oldValue = client.get("workman".getBytes());
+        System.out.println(oldValue != null);
+        sb = new StringBuilder();
+        System.out.println("workman1-exists="+client.keyMayExist("workman1".getBytes(), sb));
+        System.out.println("workman1-sb="+sb.length());
+        byte[] oldValue1 = client.get("workman1".getBytes());
+        System.out.println(oldValue1 == null);
+
 //
 //        for (Map.Entry<byte[], byte[]> entry : client.multiGet(keys).entrySet()) {
 //            String key = Arrays.toString(entry.getKey());

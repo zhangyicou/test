@@ -24,7 +24,7 @@ public class SingleProductMain {
         //
 //        System.out.println("------并行执行----------------------------------------------");
 //        //并行执行
-        disruptor.handleEventsWith(new C11EventHandler()).then(new C12EventHandler(), new C21EventHandler(), new C22EventHandler());
+        disruptor.handleEventsWith(new C11EventHandler());//.then(new C12EventHandler(), new C21EventHandler(), new C22EventHandler());
 //        System.out.println("----------------------------------------------------------");
 
 //        System.out.println("------串行依次执行------------------------------------------");
@@ -75,7 +75,7 @@ public class SingleProductMain {
             /**
              * 输入10
              */
-            ringBuffer.publishEvent(new LongEventTranslator(), i * 10L);
+            ringBuffer.publishEvent(new LongEventTranslator(), i*1L);
 //            ringBuffer.publishEvents(new LongEventTranslator(), ary);
             //ringBuffer.publishEvent(new LongEventTranslator(),100L);
             System.out.println("-------------------------------");

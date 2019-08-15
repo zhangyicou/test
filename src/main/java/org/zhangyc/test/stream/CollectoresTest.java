@@ -57,6 +57,9 @@ public class CollectoresTest {
         Map<Integer, Subject> map4 = subjectList.stream().collect(Collectors.toMap(Subject::getId, Function.identity(), (oldValue, newValue) -> newValue));
         System.out.println(JSON.toJSONString(map4));//{1:{"id":1,"name":"语文","score":91},2:{"id":2,"name":"数学","score":94},3:{"id":3,"name":"英语","score":92},4:{"id":4,"name":"语文","score":90}}
 
+        Map<Integer, Subject> map5 = subjectList.stream().collect(Collectors.toMap(Subject::getId, Function.identity()));
+        System.out.println("map5="+JSON.toJSONString(map5));
+
         //这里的key必须是boolean型
         //按照某个条件是否成立分为两组，value是list
         Map<Boolean, List<Subject>> stringListMap1 = subjectList.stream().collect(Collectors.partitioningBy(s -> s.getName().equals("语文")));

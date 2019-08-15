@@ -31,5 +31,13 @@ public class Test {
             i++;
         }while(i==2);
         System.out.println(i);
+
+        list.stream().forEach(a ->{
+            if(a % 3 ==0){
+                return;
+            }
+
+            System.out.println("a = "+ a);
+        });
     }
 }

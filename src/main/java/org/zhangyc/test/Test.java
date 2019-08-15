@@ -1,11 +1,7 @@
 package org.zhangyc.test;
 
-import com.google.common.primitives.Ints;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+import org.zhangyc.test.string.StringUtil;
 
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -13,7 +9,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * Created by user on 16/7/11.
  */
 public class Test {
-    public static void main(String args[]){
+    public static void main(String[] args){
         int[] products = new int[]{
             596, 199, 264, 465, 646, 404, 354, 364,
             250, 301, 974, 409, 345, 418, 366, 440,
@@ -68,5 +64,18 @@ public class Test {
         Float price1 = 1840.64f;
         Float price2 = 1840.647f;
         System.out.println(Math.abs(price1.floatValue() - price2.floatValue()) < 1);
+
+        String str = "aabbbcccdabcdda";
+        String[] strs = str.split("");
+        System.out.println(strs.length);
+
+        double value = Float.POSITIVE_INFINITY * 0;
+        System.out.println("value="+value);
+        System.out.println(value);
+
+        boolean b = StringUtil.getBinaryIndex(61, 2) == 1;
+        System.out.println("b="+b);
+        b = StringUtil.getBinaryIndex(63, 2) == 1;
+        System.out.println("b="+b);
     }
 }

@@ -5,18 +5,26 @@ package org.zhangyc.test.semaphore;
  */
 public class RunTest implements Runnable {
     private int i;
-    public RunTest(int i){
+    private com.google.common.util.concurrent.RateLimiter rateLimiter;
+    public RunTest(int i,
+                   com.google.common.util.concurrent.RateLimiter rateLimiter){
         this.i = i;
+        this.rateLimiter = rateLimiter;
+        if(this.i % 1000 == 0){
+            this.rateLimiter.setRate(this.rateLimiter.getRate() + 1);
+        }
+        if(this.rateLimiter.getRate() > 20 && this.i > 10000){
+            this.rateLimiter.setRate(this.rateLimiter.getRate() - 1);
+        }
+
     }
     public void run() {
         while(true) {
-            long second = System.currentTimeMillis() / 1000;
-
-            boolean limiter = RateLimiter.tryAcquire(second, 10);
+            boolean limiter = this.rateLimiter.tryAcquire();
             if(!limiter){
                 continue;
             }
-            System.out.println(this.i + ":" +second + " after..."+limiter);
+            System.out.println(this.i + " after..."+this.rateLimiter.getRate());
         }
     }
 }

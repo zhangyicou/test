@@ -57,10 +57,16 @@
             <artifactId>caffeine</artifactId>
             <version>2.6.0</version>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.rocksdb</groupId>-->
+            <!--<artifactId>rocksdbjni</artifactId>-->
+            <!--&lt;!&ndash;<version>5.14.2</version>&ndash;&gt;-->
+            <!--<version>6.8.1</version>-->
+        <!--</dependency>-->
         <dependency>
-            <groupId>org.rocksdb</groupId>
-            <artifactId>rocksdbjni</artifactId>
-            <version>5.14.2</version>
+            <groupId>com.data-artisans</groupId>
+            <artifactId>frocksdbjni</artifactId>
+            <version>5.17.2-artisans-1.0</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -117,6 +123,7 @@
             <artifactId>joda-time</artifactId>
             <version>2.9.9</version>
         </dependency>
+
     </dependencies>
 
 </project>

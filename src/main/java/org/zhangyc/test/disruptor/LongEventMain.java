@@ -1,9 +1,7 @@
 package org.zhangyc.test.disruptor;
 
 import com.lmax.disruptor.RingBuffer;
-import com.lmax.disruptor.WaitStrategy;
 import com.lmax.disruptor.dsl.Disruptor;
-import com.lmax.disruptor.dsl.ProducerType;
 import com.lmax.disruptor.util.DaemonThreadFactory;
 
 import java.nio.ByteBuffer;
@@ -35,7 +33,7 @@ public class LongEventMain {
         ByteBuffer bb = ByteBuffer.allocate(8);
         for (long l = 0; true; l++)
         {
-            bb.putLong(0, l);
+            //bb.putLong(0, l);
             producer.onData(bb);
             //Thread.sleep(1000);
         }

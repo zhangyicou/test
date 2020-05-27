@@ -68,8 +68,11 @@ public class CollectoresTest {
 
         //按照某个条件分为多组，value是list
         Map<String, List<Subject>> stringListMap2 = subjectList.stream().collect(Collectors.groupingBy(Subject::getName));//这里只能是Subject::getName，如果写成subject.getName()则报错
-        System.out.println(JSON.toJSONString(stringListMap2));
+        System.out.println("stringListMap2 ="+JSON.toJSONString(stringListMap2));
         //{"数学":[{"grade":94.0,"id":2,"name":"数学"}],"语文":[{"grade":91.0,"id":1,"name":"语文"},{"grade":90.0,"id":4,"name":"语文"}],"英语":[{"grade":92.0,"id":3,"name":"英语"}]}
+
+        Map<Integer, Subject> subjectMap = stringListMap2.entrySet().stream().flatMap(entry->entry.getValue().stream().map(subjet-> subjet)).collect(Collectors.toMap(Subject::getId, Function.identity()));
+        System.out.println("subjectMap ="+JSON.toJSONString(subjectMap));
 
         //使用parallelStream是多管道处理，效率比stream高很多
         Map<String, List<Subject>> stringListMap5 = subjectList.parallelStream().collect(Collectors.groupingBy(Subject::getName));//这里只能是Subject::getName，如果写成subject.getName()则报错

@@ -35,7 +35,7 @@ public class PrefixIterator {
 
 
         ReadOptions readOptions = new ReadOptions().setTotalOrderSeek(true).setPrefixSameAsStart(true);
-        String prefix = "btc";
+        String prefix = "eos-0002";
         RocksIterator iterator = client.newIterator(readOptions);
         for (iterator.seek(prefix.getBytes());
              iterator.isValid()/* && startWith(iterator.key(), prefix.getBytes())*/;
@@ -51,9 +51,9 @@ public class PrefixIterator {
     }
 
     public static boolean startWith(byte[] bytes, byte[] prefix){
-        byte ta[] = bytes;
+        byte[] ta = bytes;
         int to = 0;
-        byte pa[] = prefix;
+        byte[] pa = prefix;
         int po = 0;
         int pc = prefix.length;
         // Note: toffset might be near -1>>>1.

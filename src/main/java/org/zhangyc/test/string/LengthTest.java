@@ -214,11 +214,12 @@ public class LengthTest {
         StringBuilder sb3 = new StringBuilder();
         System.out.println(strs.length);
         for(int i = 0; i < strs.length; i++){
-//            sb1.append(strs[i]).append("L,");
-//            sb2.append("(").append(strs[i]).append(", 0, 1000000, 6, 0, 311, NOW()), \n");
-//            sb3.append("(").append(i+3).append(",").append(strs[i]).append(", 0, 311, 6, 0, 1000000, 0, 0, 0, 1, '', 0, 0, NOW(), NOW()),\n");
+            sb1.append(strs[i]).append("L,");
+            sb2.append("(").append(strs[i]).append(", 0, 1000000, 6, 0, 311, NOW()), \n");
+           sb3.append("(").append(i+3).append(",").append(strs[i]).append(", 0, 311, 6, 0, 1000000, 0, 0, 0, 1, '', 0, 0, NOW(), NOW()),\n");
 
             System.out.println(strs[i] + "--" +Long.parseLong(strs[i]) % 128);
+
         }
 
         System.out.println(sb1.toString());

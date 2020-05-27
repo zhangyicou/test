@@ -1,5 +1,7 @@
 package org.zhangyc.test.thread;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -10,6 +12,7 @@ public class PrecisionUtil {
     public static final int INITIAL_CAPACITY = 16;
     private static final PrecisionUtil instance = new PrecisionUtil();
     private final ThreadLocal<Map<Integer, NumberFormat>> threadLocal = ThreadLocal.withInitial(this::initialValue);
+    private final String ERROR_ZERO = "-0";
 
     private PrecisionUtil() {
     }
@@ -55,9 +58,10 @@ public class PrecisionUtil {
 
     public String formatNumber(final double value, final int digits) {
         if (Double.isNaN(value)) {
-            return "";
+            return StringUtils.EMPTY;
         }
-
-        return this.threadLocal.get().get(digits).format(value);
+        final double a = Math.pow(10, digits);
+        final String number = this.threadLocal.get().get(digits).format(Math.round(value * a) / a);
+        return this.ERROR_ZERO.equals(number) ? "0" : number;
     }
 }
